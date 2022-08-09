@@ -6,11 +6,13 @@ FROM adoptopenjdk/openjdk11:${OPENJDK_TAG} AS cloud-datastore-emulator
 ARG DATASTORE_EMULATOR_BUILD_NUMBER
 ENV DATASTORE_EMULATOR_URL="https://dl.google.com/dl/cloudsdk/channels/rapid/components/google-cloud-sdk-cloud-datastore-emulator-${DATASTORE_EMULATOR_BUILD_NUMBER}.tar.gz"
 RUN set -eux; \
+	apk --no-cache add \
+		bash; \
+	\
 	wget -q -O- ${DATASTORE_EMULATOR_URL} | tar xfz - --strip-components=1 -C /
-ENV PATH /cloud-datastore-emulator:${PATH}
 
 EXPOSE 8080/tcp
-ENTRYPOINT ["cloud_datastore_emulator"]
+ENTRYPOINT ["/cloud-datastore-emulator/cloud_datastore_emulator"]
 
 LABEL org.opencontainers.image.authors       "The containerz authors"
 LABEL org.opencontainers.image.url           "https://github.com/containerz-dev/cloud-datastore-emulator"
