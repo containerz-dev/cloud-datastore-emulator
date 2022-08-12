@@ -54,7 +54,7 @@ images:
 
 substitutions:
   _OPENJDK_TAG: "alpine-slim"
-  _DATASTORE_EMULATOR_BUILD_NUMBER: "20220805142045"
+  _DATASTORE_EMULATOR_BUILD_NUMBER: "20220708145531"
 
 tags:
   - "gcp.cloud-datastore-emulator"
