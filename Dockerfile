@@ -21,4 +21,4 @@ RUN apt-get update && \
 	curl -sSL ${DATASTORE_EMULATOR_URL} | tar xfz - --strip-components=1 -C /
 
 EXPOSE 8080/tcp
-ENTRYPOINT ["/cloud-datastore-emulator/cloud_datastore_emulator"]
+ENTRYPOINT ["/cloud-datastore-emulator/cloud_datastore_emulator", "--no-store-on-disk", "--consistency=1.0"]
